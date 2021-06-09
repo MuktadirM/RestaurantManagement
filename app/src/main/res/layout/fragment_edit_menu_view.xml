@@ -1,14 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.admin.fragments.EditMenuView">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:id="@+id/user_image"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_baseline_person_24"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:layout_margin="5dp"
+                />
+            <TextView
+                android:id="@+id/show_selected_file_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload Image"
+                android:id="@+id/upload_image"
+                android:padding="10dp"
+                android:gravity="center"
+                app:cornerRadius="0dp"
+                android:insetBottom="0dp"
+                android:layout_margin="10dp"
+                />
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                app:drawableStartCompat="@drawable/ic_baseline_person_24"
+                android:drawablePadding="10dp"
+                />
+            <EditText
+                android:id="@+id/ic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Price"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                app:drawableStartCompat="@drawable/ic_baseline_credit_card_24"
+                android:drawablePadding="10dp"
+                />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Calories"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                app:drawableStartCompat="@drawable/ic_baseline_email_24"
+                android:drawablePadding="10dp"
+                />
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:padding="10dp"
+                app:drawableStartCompat="@drawable/ic_baseline_phone_iphone_24"
+                android:drawablePadding="10dp"
+                android:lines="5"
+                android:layout_gravity="start"
+                />
 
-</FrameLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_alignParentBottom="true"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_weight="50"
+            android:padding="10dp"
+            app:cornerRadius="0dp"
+            android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/delete"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:layout_weight="50"
+            android:padding="10dp"
+            android:insetTop="0dp"
+            app:cornerRadius="0dp"
+            android:gravity="center"
+            android:insetBottom="0dp"
+            app:backgroundTint="@color/teal_700"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+</RelativeLayout>
+

@@ -8,24 +8,66 @@
     <fragment
         android:id="@+id/nav_admin_home"
         android:label="Menus"
-        android:name="com.example.restaurantmanagement.views.admin.fragments.OrderView"
-        tools:layout="@layout/fragment_order_view"
-        />
+        android:name="com.example.restaurantmanagement.views.admin.fragments.MenuView"
+        tools:layout="@layout/fragment_menu_view"
+        >
+        <action
+            android:id="@+id/action_nav_admin_home_to_addMenuView"
+            app:destination="@id/addMenuView" />
+        <action
+            android:id="@+id/action_nav_admin_home_to_menuDetailsView"
+            app:destination="@id/menuDetailsView" />
+    </fragment>
     <fragment android:id="@+id/nav_admin_orders"
         android:label="Orders"
         android:name="com.example.restaurantmanagement.views.admin.fragments.OrderView"
-        />
+        >
+        <action
+            android:id="@+id/action_nav_admin_orders_to_adminOrderDetailsView"
+            app:destination="@id/adminOrderDetailsView"
+            app:popUpTo="@id/nav_admin_orders" />
+    </fragment>
     <fragment android:id="@+id/nav_admin_report"
         android:label="Report"
         android:name="com.example.restaurantmanagement.views.admin.fragments.GenerateReportView"
         />
+    <fragment
+        android:id="@+id/addMenuView"
+        android:name="com.example.restaurantmanagement.views.admin.fragments.AddMenuView"
+        android:label="Add New Menu"
+        tools:layout="@layout/fragment_add_menu_view" />
+    <fragment
+        android:id="@+id/editMenuView"
+        android:name="com.example.restaurantmanagement.views.admin.fragments.EditMenuView"
+        android:label="Edit Menu"
+        tools:layout="@layout/fragment_edit_menu_view" />
+
     <fragment android:id="@+id/nav_admin_profile"
         android:label="Profile"
         android:name="com.example.restaurantmanagement.views.core.ProfileView"
-        />
-    <fragment android:id="@+id/user_edit_profile"
+        >
+        <action
+            android:id="@+id/action_nav_admin_profile_to_nav_admin_edit_profile"
+            app:destination="@id/nav_admin_edit_profile"
+            app:popUpTo="@id/nav_admin_profile" />
+    </fragment>
+    <fragment android:id="@+id/nav_admin_edit_profile"
         android:label="Edit Profile"
         android:name="com.example.restaurantmanagement.views.core.EditProfileView"
         />
+    <fragment
+        android:id="@+id/adminOrderDetailsView"
+        android:name="com.example.restaurantmanagement.views.admin.fragments.AdminOrderDetailsView"
+        android:label="fragment_admin_order_details_view"
+        tools:layout="@layout/fragment_admin_order_details_view" />
+    <fragment
+        android:id="@+id/menuDetailsView"
+        android:name="com.example.restaurantmanagement.views.admin.fragments.MenuDetailsView"
+        android:label="Menu Details"
+        tools:layout="@layout/fragment_menu_details_view" >
+        <action
+            android:id="@+id/action_menuDetailsView_to_editMenuView"
+            app:destination="@id/editMenuView" />
+    </fragment>
 
 </navigation>

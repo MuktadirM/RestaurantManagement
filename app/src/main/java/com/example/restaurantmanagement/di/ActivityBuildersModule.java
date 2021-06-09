@@ -25,4 +25,5 @@ public abstract class ActivityBuildersModule {
 
     @ContributesAndroidInjector(modules = {UserFragmentsBuildersModule.class, UserViewModelsModule.class})
     abstract UserHostActivity contributeUserHostActivity();
+
 }

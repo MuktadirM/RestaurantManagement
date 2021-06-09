@@ -5,6 +5,8 @@ import android.app.Application;
 import com.example.restaurantmanagement.BaseApplication;
 import com.example.restaurantmanagement.SessionManager;
 import com.example.restaurantmanagement.di.auth.AuthViewModelsModule;
+import com.example.restaurantmanagement.di.core.CommonFragmentsBuildersModule;
+import com.example.restaurantmanagement.di.core.CommonViewModelsModule;
 import com.example.restaurantmanagement.di.domain.DomainCoreModules;
 
 import javax.inject.Singleton;
@@ -19,6 +21,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         AndroidSupportInjectionModule.class,
         AuthViewModelsModule.class,
         AppModule.class,
+        CommonFragmentsBuildersModule.class,
+        CommonViewModelsModule.class,
         DomainCoreModules.class,
         ActivityBuildersModule.class,
         ViewModelFactoryModule.class,

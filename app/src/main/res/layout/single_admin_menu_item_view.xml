@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="foodModel"
+            type="com.example.restaurantmanagement.views.models.FoodModel" />
+        <variable
+            name="onClickInterface"
+            type="com.example.restaurantmanagement.views.admin.adpaters.AdminFoodRecyclerAdapter.MenuInterface" />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:elevation="9dp"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="3dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{()-> onClickInterface.onItemClick(foodModel)}"
+            >
+            <ImageView
+                android:id="@+id/foodImageView"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/food"
+                tools:src="@drawable/food"
+                android:contentDescription="@string/food_image_desc"
+                android:foodImage="@{foodModel.image}"
+                android:layout_gravity="center_horizontal"
+                />
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{foodModel.title}"
+                    tools:text="Name"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    android:padding="5dp"
+                    />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Name"
+                    android:textAlignment="center"
+                    android:text="@{`Price: `+String.valueOf(foodModel.price)+`RM`}"
+                    android:padding="2dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Name"
+                    android:textAlignment="center"
+                    android:text="@{`Calories : `+String.valueOf(foodModel.calories)}"
+                    android:paddingBottom="5dp"
+                    />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

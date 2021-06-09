@@ -2,23 +2,31 @@ package com.example.restaurantmanagement.domain.models.food;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.DiffUtil;
+
+import com.bumptech.glide.Glide;
 import com.example.restaurantmanagement.domain.models.core.DomainObject;
 
 public class Food extends DomainObject implements Parcelable {
     private String title;
     private double price;
     private double calories;
+    private String image;
     private String description;
 
     public Food() {
     }
 
-    public Food(String key, String createdAt, String createdBy, String updatedAt, String title, double price, double calories, String description) {
+    public Food(String key, String createdAt, String createdBy, String updatedAt, String title, double price, double calories,String image, String description) {
         super(key, createdAt, createdBy, updatedAt);
         this.title = title;
         this.price = price;
         this.calories = calories;
+        this.image = image;
         this.description = description;
     }
 
@@ -26,6 +34,7 @@ public class Food extends DomainObject implements Parcelable {
         title = in.readString();
         price = in.readDouble();
         calories = in.readDouble();
+        image = in.readString();
         description = in.readString();
     }
 
@@ -51,6 +60,7 @@ public class Food extends DomainObject implements Parcelable {
         dest.writeString(title);
         dest.writeDouble(price);
         dest.writeDouble(calories);
+        dest.writeString(image);
         dest.writeString(description);
     }
 
@@ -76,6 +86,14 @@ public class Food extends DomainObject implements Parcelable {
 
     public void setCalories(double calories) {
         this.calories = calories;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getDescription() {

@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 
 import com.example.restaurantmanagement.R;
 
+import dagger.android.support.DaggerFragment;
+
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link DaggerFragment} subclass.
  * Use the {@link OrderView#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OrderView extends Fragment {
+public class OrderView extends DaggerFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
