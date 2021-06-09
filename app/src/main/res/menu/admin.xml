@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_admin_home"
+            android:title="Menus"
+            android:icon="@drawable/ic_baseline_food_bank_24"
+            />
+        <item android:id="@+id/nav_admin_orders"
+            android:title="Orders"
+            android:icon="@drawable/ic_baseline_autorenew_24"
+            />
+        <item android:id="@+id/nav_admin_report"
+            android:title="Generate Report"
+            android:icon="@drawable/ic_baseline_edit_off_24"
+            />
+        <item android:id="@+id/nav_admin_profile"
+            android:title="Profile"
+            android:icon="@drawable/ic_baseline_person_24"/>
+    </group>
+</menu>

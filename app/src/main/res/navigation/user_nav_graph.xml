@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_nav_graph"
+    app:startDestination="@id/nav_user_home"
+    >
+    <fragment
+        android:id="@+id/nav_user_home"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserMenuView"
+        android:label="Home"
+        >
+        <action
+            android:id="@+id/action_nav_user_home_to_nav_user_menu_details"
+            app:destination="@id/nav_user_menu_details"
+            app:popUpTo="@id/nav_user_home" />
+        <action
+            android:id="@+id/action_nav_user_home_to_nav_user_cart_item"
+            app:destination="@id/nav_user_cart_item"
+            app:popUpTo="@id/nav_user_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_user_menu_details"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserMenuItemDetailsView"
+        android:label="Menu Details">
+        <argument
+            android:name="Food"
+            android:defaultValue="@null"
+            app:argType="com.example.restaurantmanagement.domain.models.food.Food"
+            app:nullable="true" />
+    </fragment>
+    <fragment android:id="@+id/nav_user_cart_item"
+        android:label="Cart Items"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserCartItemView"
+        />
+    <fragment android:id="@+id/nav_user_orders"
+        android:label="Order History"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserOrderHistoryView"
+        />
+    <fragment android:id="@+id/nav_user_more"
+        android:label="More"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserMoreView"
+        />
+
+    <fragment android:id="@+id/nav_user_order_items"
+        android:label="Cart Items"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserOrderItemsView"
+        />
+
+    <fragment android:id="@+id/nav_user_profile"
+        android:label="Profile"
+        android:name="com.example.restaurantmanagement.views.core.ProfileView"
+        >
+        <action
+            android:id="@+id/action_nav_user_profile_to_user_edit_profile"
+            app:destination="@id/user_edit_profile"
+            app:popUpTo="@id/nav_user_profile" />
+    </fragment>
+    <fragment android:id="@+id/user_edit_profile"
+        android:label="Edit Profile"
+        android:name="com.example.restaurantmanagement.views.core.EditProfileView"
+        />
+</navigation>

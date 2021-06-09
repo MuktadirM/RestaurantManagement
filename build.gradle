@@ -1,0 +1,49 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        def nav_version = "2.3.3"
+        classpath "com.android.tools.build:gradle:4.2.1"
+        classpath 'com.google.gms:google-services:4.3.8'
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+       // jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+
+ext {
+    compileSdkVersion = 30
+    buildToolsVersion = '30.0.3'
+    minSdkVersion = 22
+    targetSdkVersion = 30
+    appCompatVersion='1.3.0'
+    constraintlayoutVersion ='2.0.4'
+    recyclerViewVersion = '1.2.1'
+    materialVersion = '1.3.0'
+    cardViewVersion ='1.0.0'
+    lifecycle_version='2.3.1'
+    nav_version = "2.3.5"
+    daggerVersion = '2.35.1'
+    glideVersion = '4.11.0'
+    arch_version = '2.1.0'
+
+    firebase_database='20.0.0'
+    firebase_firestore='23.0.0'
+    firebase_storage='20.0.0'
+    firebase_auth='21.0.1'
+    g_services_auth='19.0.0'
+    firebase_analytics='19.0.0'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
