@@ -11,6 +11,12 @@
         android:id="@+id/order_items_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/single_admin_order_view"
-        />
+        tools:listitem="@layout/single_user_order_view"
+    />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/order_items_recycler"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:listitem="@layout/single_admin_order_view"-->
+<!--        />-->
 </LinearLayout>

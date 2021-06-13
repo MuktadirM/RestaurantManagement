@@ -12,8 +12,5 @@ import dagger.multibindings.IntoMap;
 @Module
 public abstract class UserViewModelsModule {
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(OrderViewModel.class)
-    public abstract ViewModel bindOrderViewModel(OrderViewModel orderViewModel);
+
 }

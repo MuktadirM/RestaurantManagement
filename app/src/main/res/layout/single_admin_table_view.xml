@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="table"
+            type="com.example.restaurantmanagement.domain.models.core.TableBooking"
+            />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{table.table}"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textAlignment="center"
+                tools:text="21"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{table.profile.name}"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textAlignment="textStart"
+                tools:text="Name of user"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
+                android:text="@{table.time}"
+                android:textSize="20sp"
+                android:drawablePadding="5dp"
+                tools:text="13 June 2021"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

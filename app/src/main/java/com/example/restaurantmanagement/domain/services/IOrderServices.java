@@ -12,4 +12,6 @@ public interface IOrderServices extends IGenericDataServices<Order>{
     public LiveData<Resource<List<Food>>> getAllCartItems();
     public LiveData<Resource<Boolean>> addToCart(Food food);
     public LiveData<Resource<Boolean>> removeFromCart(Food food);
+    public LiveData<Resource<List<Order>>> getOrderByUser();
+    public LiveData<Resource<Boolean>> orderConfirm();
 }

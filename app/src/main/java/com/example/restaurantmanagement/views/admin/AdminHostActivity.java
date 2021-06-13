@@ -1,6 +1,7 @@
 package com.example.restaurantmanagement.views.admin;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -58,6 +59,7 @@ public class AdminHostActivity extends BaseActivity implements NavigationView.On
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){

@@ -1,7 +1,6 @@
 package com.example.restaurantmanagement.views.core;
 
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,13 @@ import androidx.navigation.Navigation;
 
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.databinding.FragmentProfileViewBinding;
+import com.example.restaurantmanagement.views.models.UserProfile;
 
 import org.jetbrains.annotations.NotNull;
 
 import dagger.android.support.DaggerFragment;
+
+import static com.example.restaurantmanagement.utils.Constrains.EDIT_PROFILE;
 
 /**
  * A simple {@link DaggerFragment} subclass.
@@ -26,6 +28,7 @@ import dagger.android.support.DaggerFragment;
 public class ProfileView extends DaggerFragment {
     private FragmentProfileViewBinding binding;
     private NavController navController;
+    private UserProfile profile;
 
     public ProfileView() {
         // Required empty public constructor
@@ -45,18 +48,20 @@ public class ProfileView extends DaggerFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getArguments() != null){
+            profile = getArguments().getParcelable("profile");
+        }
     }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentProfileViewBinding.inflate(inflater,container,false);
-
-        binding.userEditProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_nav_admin_profile_to_nav_admin_edit_profile);
-            }
+        binding.setProfile(profile);
+        binding.userEditProfile.setOnClickListener(v ->{
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(EDIT_PROFILE,profile);
+            navController.navigate(R.id.action_nav_user_profile_to_user_edit_profile,bundle);
         });
 
         // Inflate the layout for this fragment

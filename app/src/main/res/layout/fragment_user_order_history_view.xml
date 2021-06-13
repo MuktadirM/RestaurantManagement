@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.user.fragments.UserOrderHistoryView">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context=".views.user.fragments.UserOrderHistoryView"
+    >
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/order_items_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="User Order History" />
-
-</FrameLayout>
+        tools:listitem="@layout/single_user_order_view"
+        />
+</LinearLayout>

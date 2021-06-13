@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="food"
+            type="com.example.restaurantmanagement.views.models.FoodModel" />
+    </data>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.admin.fragments.EditMenuView">
-
+    tools:context=".views.admin.fragments.EditMenuView"
+    >
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_btn_layout"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,13 +23,13 @@
             android:orientation="vertical"
             >
             <ImageView
-                android:id="@+id/user_image"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:src="@drawable/ic_baseline_person_24"
-                android:layout_gravity="center_horizontal"
-                android:padding="10dp"
-                android:layout_margin="5dp"
+                android:id="@+id/selected_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/food"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="6dp"
+                android:foodImage="@{food.image}"
                 />
             <TextView
                 android:id="@+id/show_selected_file_size"
@@ -32,10 +38,10 @@
                 android:padding="2dp"
                 />
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/upload_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Upload Image"
-                android:id="@+id/upload_image"
                 android:padding="10dp"
                 android:gravity="center"
                 app:cornerRadius="0dp"
@@ -43,52 +49,56 @@
                 android:layout_margin="10dp"
                 />
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={food.title}"
                 android:hint="Title"
                 android:padding="10dp"
                 android:layout_marginTop="20dp"
-                app:drawableStartCompat="@drawable/ic_baseline_person_24"
+                app:drawableStartCompat="@drawable/ic_baseline_fastfood_24"
                 android:drawablePadding="10dp"
                 />
             <EditText
-                android:id="@+id/ic"
+                android:id="@+id/price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@{String.valueOf(food.price)}"
                 android:hint="Price"
+                android:inputType="numberDecimal"
                 android:padding="10dp"
                 android:layout_marginTop="20dp"
-                app:drawableStartCompat="@drawable/ic_baseline_credit_card_24"
+                app:drawableStartCompat="@drawable/ic_baseline_attach_money_24"
                 android:drawablePadding="10dp"
                 />
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/calories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@{String.valueOf(food.calories)}"
                 android:hint="Calories"
                 android:padding="10dp"
                 android:layout_marginTop="20dp"
-                app:drawableStartCompat="@drawable/ic_baseline_email_24"
+                app:drawableStartCompat="@drawable/ic_baseline_directions_run_24"
                 android:drawablePadding="10dp"
                 />
             <EditText
-                android:id="@+id/phone"
+                android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={food.description}"
                 android:hint="Description"
                 android:padding="10dp"
-                app:drawableStartCompat="@drawable/ic_baseline_phone_iphone_24"
+                app:drawableStartCompat="@drawable/ic_baseline_edit_off_24"
                 android:drawablePadding="10dp"
                 android:lines="5"
-                android:layout_gravity="start"
+                android:gravity="start"
                 />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
     <LinearLayout
+        android:id="@+id/bottom_btn_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -125,4 +135,5 @@
             />
     </LinearLayout>
 </RelativeLayout>
+</layout>
 

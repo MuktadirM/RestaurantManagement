@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/user_nav_graph"
@@ -9,47 +10,71 @@
         android:id="@+id/nav_user_home"
         android:name="com.example.restaurantmanagement.views.user.fragments.UserMenuView"
         android:label="Home"
+        tools:layout="@layout/fragment_user_menu_view"
         >
         <action
             android:id="@+id/action_nav_user_home_to_nav_user_menu_details"
             app:destination="@id/nav_user_menu_details"
-            app:popUpTo="@id/nav_user_home" />
+            app:popUpTo="@id/nav_user_home"
+            />
         <action
             android:id="@+id/action_nav_user_home_to_nav_user_cart_item"
             app:destination="@id/nav_user_cart_item"
-            app:popUpTo="@id/nav_user_home" />
+            app:popUpTo="@id/nav_user_home"
+            />
     </fragment>
-    <fragment
-        android:id="@+id/nav_user_menu_details"
-        android:name="com.example.restaurantmanagement.views.user.fragments.UserMenuItemDetailsView"
-        android:label="Menu Details">
-        <argument
-            android:name="Food"
-            android:defaultValue="@null"
-            app:argType="com.example.restaurantmanagement.domain.models.food.Food"
-            app:nullable="true" />
-    </fragment>
-    <fragment android:id="@+id/nav_user_cart_item"
-        android:label="Cart Items"
-        android:name="com.example.restaurantmanagement.views.user.fragments.UserCartItemView"
-        />
     <fragment android:id="@+id/nav_user_orders"
         android:label="Order History"
         android:name="com.example.restaurantmanagement.views.user.fragments.UserOrderHistoryView"
-        />
+        tools:layout="@layout/fragment_user_order_history_view"
+        >
+        <action
+            android:id="@+id/action_nav_user_orders_to_nav_user_order_items"
+            app:destination="@id/nav_user_order_items"
+            app:popUpTo="@id/nav_user_orders" />
+    </fragment>
     <fragment android:id="@+id/nav_user_more"
         android:label="More"
         android:name="com.example.restaurantmanagement.views.user.fragments.UserMoreView"
+        tools:layout="@layout/fragment_user_more_view"
+        >
+        <action
+            android:id="@+id/action_nav_user_more_to_nav_user_profile"
+            app:destination="@id/nav_user_profile"
+            app:popUpTo="@id/nav_user_more" />
+        <action
+            android:id="@+id/action_nav_user_more_to_userTableBookingView"
+            app:destination="@id/userTableBookingView" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_user_menu_details"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserMenuItemDetailsView"
+        android:label="Menu Details"
+        tools:layout="@layout/fragment_user_menu_item_details_view"
         />
 
-    <fragment android:id="@+id/nav_user_order_items"
+    <fragment android:id="@+id/nav_user_cart_item"
         android:label="Cart Items"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserCartItemView"
+        tools:layout="@layout/fragment_user_cart_item_view"
+        >
+        <action
+            android:id="@+id/action_nav_user_cart_item_to_userOrderProcessingView"
+            app:destination="@id/userOrderProcessingView"
+            app:popUpTo="@id/nav_user_cart_item" />
+    </fragment>
+
+    <fragment android:id="@+id/nav_user_order_items"
+        android:label="User Order History"
         android:name="com.example.restaurantmanagement.views.user.fragments.UserOrderItemsView"
+        tools:layout="@layout/fragment_order_items_view"
         />
 
     <fragment android:id="@+id/nav_user_profile"
         android:label="Profile"
         android:name="com.example.restaurantmanagement.views.core.ProfileView"
+        tools:layout="@layout/fragment_profile_view"
         >
         <action
             android:id="@+id/action_nav_user_profile_to_user_edit_profile"
@@ -59,5 +84,30 @@
     <fragment android:id="@+id/user_edit_profile"
         android:label="Edit Profile"
         android:name="com.example.restaurantmanagement.views.core.EditProfileView"
+        tools:layout="@layout/fragment_edit_profile_view"
         />
+    <fragment
+        android:id="@+id/userOrderProcessingView"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserOrderProcessingView"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_user_order_processing" >
+        <action
+            android:id="@+id/action_userOrderProcessingView_to_nav_user_home"
+            app:destination="@id/nav_user_home"
+            app:popUpTo="@id/nav_user_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/userTableBookingView"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserTableBookingView"
+        android:label="My Bookings"
+        tools:layout="@layout/fragment_user_table_booking_view" >
+        <action
+            android:id="@+id/action_userTableBookingView_to_userAddTableBookingView"
+            app:destination="@id/userAddTableBookingView" />
+    </fragment>
+    <fragment
+        android:id="@+id/userAddTableBookingView"
+        android:name="com.example.restaurantmanagement.views.user.fragments.UserAddTableBookingView"
+        android:label="Add New Booking"
+        tools:layout="@layout/fragment_user_add_table_booking_view" />
 </navigation>

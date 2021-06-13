@@ -1,9 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.auth.AuthActivity">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".views.auth.AuthActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+    <TextView
+        android:text="Authentication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_margin="10dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:drawablePadding="10dp"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_margin="10dp"
+        app:passwordToggleEnabled="true"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:hint="Password"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:gravity="center"
+        app:cornerRadius="0dp"
+        android:insetBottom="0dp"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create account?"
+        android:textAllCaps="false"
+        android:gravity="center"
+        app:cornerRadius="0dp"
+        android:insetBottom="0dp"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:id="@+id/login_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Error"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        />
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.restaurantmanagement.di.user;
 
+import com.example.restaurantmanagement.views.user.fragments.UserAddTableBookingView;
 import com.example.restaurantmanagement.views.user.fragments.UserCartItemView;
 import com.example.restaurantmanagement.views.user.fragments.UserMenuItemDetailsView;
 import com.example.restaurantmanagement.views.user.fragments.UserOrderItemsView;
@@ -7,6 +8,7 @@ import com.example.restaurantmanagement.views.user.fragments.UserMenuView;
 import com.example.restaurantmanagement.views.user.fragments.UserMoreView;
 import com.example.restaurantmanagement.views.user.fragments.UserOrderHistoryView;
 import com.example.restaurantmanagement.views.user.fragments.UserOrderProcessingView;
+import com.example.restaurantmanagement.views.user.fragments.UserTableBookingView;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -34,5 +36,11 @@ public abstract class UserFragmentsBuildersModule {
 
     @ContributesAndroidInjector
     public abstract UserMenuItemDetailsView contributesUserMenuItemDetailsView();
+
+    @ContributesAndroidInjector
+    public abstract UserTableBookingView contributesUserTableBookingView();
+
+    @ContributesAndroidInjector
+    public abstract UserAddTableBookingView contributesUserAddTableBookingView();
 
 }

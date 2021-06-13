@@ -1,14 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.user.fragments.UserOrderProcessingView">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_above="@+id/bottom_btn_layout"
+        android:layout_margin="30dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="20dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/order_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Order Details"
+                android:textAlignment="center"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:layout_alignParentTop="true"
+                />
+            <ListView
+                android:id="@+id/lineItem_listView"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/order_details"
+                tools:listitem="@layout/single_user_checkout_item_view"
+                android:divider="@color/black"
+                android:dividerHeight="0.5dp"
+                android:layout_above="@+id/priceTotal"
+                />
+            <TextView
+                android:id="@+id/priceTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="33.00RM"
+                android:textAlignment="textEnd"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="10dp"
+                android:paddingBottom="10dp"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <LinearLayout
+        android:id="@+id/bottom_btn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_alignParentBottom="true"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_weight="50"
+            android:padding="10dp"
+            app:cornerRadius="0dp"
+            android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/delete"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm"
+            android:layout_weight="50"
+            android:padding="10dp"
+            android:insetTop="0dp"
+            app:cornerRadius="0dp"
+            android:gravity="center"
+            android:insetBottom="0dp"
+            app:backgroundTint="@color/teal_700"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+</RelativeLayout>

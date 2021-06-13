@@ -5,7 +5,7 @@
     <data>
         <variable
             name="food"
-            type="com.example.restaurantmanagement.domain.models.food.Food"
+            type="com.example.restaurantmanagement.views.models.FoodModel"
             />
     </data>
     <RelativeLayout
@@ -27,7 +27,7 @@
                     android:layout_height="200dp"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/food"
-                    android:src="@drawable/food"
+                    android:foodImage="@{food.image}"
                     />
                 <TextView
                     android:layout_width="match_parent"

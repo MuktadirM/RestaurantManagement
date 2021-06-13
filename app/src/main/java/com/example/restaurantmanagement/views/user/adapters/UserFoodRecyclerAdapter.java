@@ -12,6 +12,7 @@ import com.example.restaurantmanagement.databinding.SingleUserMenuItemViewBindin
 import com.example.restaurantmanagement.domain.models.food.Food;
 import com.example.restaurantmanagement.utils.AddToCartClicked;
 import com.example.restaurantmanagement.utils.ItemOnClick;
+import com.example.restaurantmanagement.views.models.FoodModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -20,11 +21,11 @@ import java.util.List;
 public class UserFoodRecyclerAdapter extends RecyclerView.Adapter<UserFoodRecyclerAdapter.ViewHolder>{
     private SingleUserMenuItemViewBinding binding;
     private Context mContext;
-    private final List<Food> foodList;
-    private final ItemOnClick<Food> itemOnClick;
+    private List<FoodModel> foodList;
+    private final ItemOnClick<FoodModel> itemOnClick;
     private final AddToCartClicked addToCartClicked;
 
-    public UserFoodRecyclerAdapter(Context mContext, List<Food> foodList, ItemOnClick<Food> itemOnClick,AddToCartClicked addToCartClicked) {
+    public UserFoodRecyclerAdapter(Context mContext, List<FoodModel> foodList, ItemOnClick<FoodModel> itemOnClick, AddToCartClicked addToCartClicked) {
         this.mContext = mContext;
         this.foodList = foodList;
         this.itemOnClick = itemOnClick;
@@ -43,13 +44,12 @@ public class UserFoodRecyclerAdapter extends RecyclerView.Adapter<UserFoodRecycl
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        Food food = foodList.get(position);
-        holder.binding.title.setText(food.getTitle());
-        holder.binding.price.setText("Price :"+food.getPrice()+" RM");
+        FoodModel food = foodList.get(position);
+        binding.setFood(foodList.get(position));
         holder.binding.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCartClicked.ItemToCartClicked(food,position);
+                addToCartClicked.ItemToCartClicked(food);
             }
         });
     }
@@ -59,12 +59,16 @@ public class UserFoodRecyclerAdapter extends RecyclerView.Adapter<UserFoodRecycl
         return foodList.size();
     }
 
+    public void setFoodList(List<FoodModel> list){
+        foodList = list;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final SingleUserMenuItemViewBinding binding;
-        private final ItemOnClick<Food> itemOnClick;
+        private final ItemOnClick<FoodModel> itemOnClick;
         private final AddToCartClicked addToCartClicked;
 
-        public ViewHolder(@NotNull SingleUserMenuItemViewBinding binding, ItemOnClick<Food> itemOnClick, AddToCartClicked addToCartClicked) {
+        public ViewHolder(@NotNull SingleUserMenuItemViewBinding binding, ItemOnClick<FoodModel> itemOnClick, AddToCartClicked addToCartClicked) {
             super(binding.getRoot());
             this.binding = binding;
             this.itemOnClick = itemOnClick;

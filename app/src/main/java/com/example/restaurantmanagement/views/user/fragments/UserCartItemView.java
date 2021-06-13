@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -21,6 +23,8 @@ import com.example.restaurantmanagement.utils.ItemOnClick;
 import com.example.restaurantmanagement.utils.Resource;
 import com.example.restaurantmanagement.viewModels.ViewModelProviderFactory;
 import com.example.restaurantmanagement.viewModels.order.OrderViewModel;
+import com.example.restaurantmanagement.views.models.FoodModel;
+import com.example.restaurantmanagement.views.models.mapping.FoodModelMapping;
 import com.example.restaurantmanagement.views.user.adapters.UserCartRecyclerAdapter;
 
 import org.jetbrains.annotations.NotNull;
@@ -37,11 +41,13 @@ import dagger.android.support.DaggerFragment;
  * Use the {@link UserCartItemView#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UserCartItemView extends DaggerFragment implements ItemOnClick<Food> {
+public class UserCartItemView extends DaggerFragment implements ItemOnClick<FoodModel> {
     private FragmentUserCartItemViewBinding binding;
     private OrderViewModel viewModel;
-    private List<Food> foodList;
+    private List<FoodModel> foodList;
     private UserCartRecyclerAdapter adapter;
+
+    private NavController navController;
 
     @Inject
     ViewModelProviderFactory providerFactory;
@@ -73,44 +79,69 @@ public class UserCartItemView extends DaggerFragment implements ItemOnClick<Food
         binding = FragmentUserCartItemViewBinding.inflate(inflater,container,false);
         initRecycler();
         // Inflate the layout for this fragment
+        binding.checkoutBtn.setOnClickListener(v->{
+            navController.navigate(R.id.action_nav_user_cart_item_to_userOrderProcessingView);
+        });
+        binding.cancel.setOnClickListener(v -> {
+            navController.popBackStack();
+        });
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NotNull View view, @Nullable  Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel.getAllCartItems().removeObservers(this);
-        viewModel.getAllCartItems().observe(getViewLifecycleOwner(), new Observer<Resource<List<Food>>>() {
-            @Override
-            public void onChanged(Resource<List<Food>> listResource) {
-                if(listResource !=null){
-                    switch (listResource.status){
-                        case SUCCESS:
-                            assert listResource.data != null;
-                            foodList = listResource.data;
-                            adapter.setFoodList(foodList);
-                            adapter.notifyDataSetChanged();
-                            break;
-                        case ERROR:
-                            break;
-                        case LOADING:
-                            Toast.makeText(getContext(),"Loading...",Toast.LENGTH_SHORT).show();
-                            break;
-                    }
+        navController = Navigation.findNavController(view);
+        viewModel.getAllCartItems().observe(getViewLifecycleOwner(), listResource -> {
+            if(listResource !=null){
+                switch (listResource.status){
+                    case SUCCESS:
+                        FoodModelMapping modelMapping = new FoodModelMapping();
+                        assert listResource.data != null;
+                        foodList = modelMapping.toModelList(listResource.data);
+                        adapter.setFoodList(foodList);
+                        adapter.notifyDataSetChanged();
+                        binding.priceTotal.setText(calculate(listResource.data));
+                        break;
+                    case ERROR:
+                        Toast.makeText(getContext(),"Fail",Toast.LENGTH_SHORT).show();
+                        break;
+                    case LOADING:
+                        break;
                 }
             }
         });
     }
 
+    private String calculate(List<Food> list){
+        double price = 0;
+        for (Food food: list) {
+            price += food.getPrice();
+        }
+        return "RM : "+price;
+    }
+
     @Override
-    public void ItemClicked(Food item, int position) {
-        viewModel.removeFromCart(item);
+    public void ItemClicked(FoodModel item, int position) {
+        viewModel.removeFromCart(item).observe(getViewLifecycleOwner(),(booleanResource -> {
+            if(booleanResource != null){
+                switch (booleanResource.status){
+                    case SUCCESS:
+                        break;
+                    case ERROR:
+                        Toast.makeText(getContext(),"Fail to process",Toast.LENGTH_SHORT).show();
+                        break;
+                    case LOADING:
+                        break;
+                }
+            }
+        }));
+
     }
 
     private void initRecycler(){
-        adapter = new UserCartRecyclerAdapter(getContext(),foodList,this);
+        adapter = new UserCartRecyclerAdapter(getContext(),new ArrayList<>(),this);
         binding.cartItemsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.cartItemsRecycler.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
     }
 }

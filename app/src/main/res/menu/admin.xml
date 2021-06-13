@@ -14,8 +14,8 @@
             android:title="Generate Report"
             android:icon="@drawable/ic_baseline_edit_off_24"
             />
-        <item android:id="@+id/nav_admin_profile"
-            android:title="Profile"
-            android:icon="@drawable/ic_baseline_person_24"/>
+        <item android:id="@+id/nav_admin_table"
+            android:title="Table Booking"
+            android:icon="@drawable/ic_baseline_table_chart_24"/>
     </group>
 </menu>

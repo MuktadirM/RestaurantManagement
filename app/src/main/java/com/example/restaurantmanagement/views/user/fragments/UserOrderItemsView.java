@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -12,10 +13,15 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.viewModels.ViewModelProviderFactory;
+import com.example.restaurantmanagement.viewModels.order.OrderViewModel;
 
 import org.jetbrains.annotations.NotNull;
+
+import javax.inject.Inject;
 
 import dagger.android.support.DaggerFragment;
 
@@ -26,6 +32,10 @@ import dagger.android.support.DaggerFragment;
  */
 public class UserOrderItemsView extends DaggerFragment {
     private NavController navController;
+    private OrderViewModel viewModel;
+
+    @Inject
+    ViewModelProviderFactory providerFactory;
 
     public UserOrderItemsView() {
         // Required empty public constructor
@@ -45,7 +55,10 @@ public class UserOrderItemsView extends DaggerFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
 
+        }
+        viewModel = new ViewModelProvider(this,providerFactory).get(OrderViewModel.class);
     }
 
     @Override
@@ -58,7 +71,6 @@ public class UserOrderItemsView extends DaggerFragment {
     @Override
     public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         navController = Navigation.findNavController(view);
     }
 

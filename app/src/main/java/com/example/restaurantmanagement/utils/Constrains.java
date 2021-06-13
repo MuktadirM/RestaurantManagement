@@ -10,11 +10,13 @@ public class Constrains {
     public static String FOOD_EDIT ="FoodDetailsEdit";
     public static String EDIT_PROFILE="EditProfile";
     public static String MENU_ITEM_DETAILS="food";
+    public static String ORDER_DETAILS = "OrderDetails";
 
     public static String FOOD_PATH = "foods";
     public static String USER_PATH = "users";
-    public static String USER_ORDER = "orders";
-    public static String USER_CART = "carts";
+    public static String USER_ORDER_PATH = "orders";
+    public static String USER_CART_PATH = "carts";
+    public static String USER_TABLE_BOOKINGS = "tables";
 
 
     public static List<Food> getFoodList(){

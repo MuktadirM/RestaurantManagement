@@ -6,7 +6,7 @@
     <data>
         <variable
             name="profile"
-            type="com.example.restaurantmanagement.domain.models.core.Profile" />
+            type="com.example.restaurantmanagement.views.models.UserProfile" />
     </data>
 
     <RelativeLayout
@@ -30,6 +30,7 @@
                     android:layout_gravity="center_horizontal"
                     android:padding="10dp"
                     android:layout_margin="5dp"
+                    android:userImage="@{profile.image}"
                     />
                 <TextView
                     android:layout_width="match_parent"

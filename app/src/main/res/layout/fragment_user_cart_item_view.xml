@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/priceTotal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Total 400 RM"
@@ -54,7 +55,7 @@
                     app:backgroundTint="@color/purple_700"
                     />
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/add_to_cart_btn"
+                    android:id="@+id/checkout_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Checkout"

@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#680606</color>
     <color name="delete">#7A0D04</color>
+    <color name="fade">#E1E1DE</color>
 </resources>

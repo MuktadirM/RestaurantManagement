@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.example.restaurantmanagement.viewModels.ViewModelProviderFactory;
 import com.example.restaurantmanagement.viewModels.food.FoodViewModel;
 import com.example.restaurantmanagement.views.admin.adpaters.AdminFoodRecyclerAdapter;
 import com.example.restaurantmanagement.views.models.FoodModel;
+import com.example.restaurantmanagement.views.models.mapping.FoodModelMapping;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -95,25 +97,23 @@ public class MenuView extends DaggerFragment implements AdminFoodRecyclerAdapter
     public void onViewCreated(@NonNull View view, @Nullable  Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        adapter.submitList(foodModels());
-    }
+        viewModel.getAllMenus().removeObservers(this);
+        viewModel.getAllMenus().observe(getViewLifecycleOwner(),(data)->{
+            if(data != null){
+                switch (data.status){
+                    case SUCCESS:
+                        FoodModelMapping modelMapping = new FoodModelMapping();
+                        assert data.data != null;
+                        adapter.submitList(modelMapping.toModelList(data.data));
+                        break;
+                    case ERROR:
+                        Toast.makeText(getContext(),"Fail to Load Data",Toast.LENGTH_SHORT).show();
+                        break;
+                    case LOADING:
+                        break;
+                }
+            }
 
-    private List<FoodModel> foodModels(){
-        List<FoodModel> list = new ArrayList<>();
-        FoodModel mm = new FoodModel();
-        mm.setTitle("Nasi Goren Ayam");
-        mm.setImage("https://firebasestorage.googleapis.com/v0/b/restaurant-management-99ad9.appspot.com/o/food%2Fnasi.jpg?alt=media&token=a1d3d4e1-3955-4728-8562-c34c3005bf5a");
-        mm.setCalories(5654);
-        mm.setPrice(4.90);
-        list.add(mm);
-        list.add(mm);
-        list.add(mm);
-        list.add(mm);
-        list.add(mm);
-        list.add(mm);
-        list.add(mm);
-        list.add(mm);
-        list.add(mm);
-        return list;
+        });
     }
 }

@@ -13,10 +13,14 @@
         >
         <action
             android:id="@+id/action_nav_admin_home_to_addMenuView"
-            app:destination="@id/addMenuView" />
+            app:destination="@id/addMenuView"
+            app:popUpTo="@id/nav_admin_home"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_nav_admin_home_to_menuDetailsView"
-            app:destination="@id/menuDetailsView" />
+            app:destination="@id/menuDetailsView"
+            app:popUpTo="@id/nav_admin_home"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment android:id="@+id/nav_admin_orders"
         android:label="Orders"
@@ -42,19 +46,6 @@
         android:label="Edit Menu"
         tools:layout="@layout/fragment_edit_menu_view" />
 
-    <fragment android:id="@+id/nav_admin_profile"
-        android:label="Profile"
-        android:name="com.example.restaurantmanagement.views.core.ProfileView"
-        >
-        <action
-            android:id="@+id/action_nav_admin_profile_to_nav_admin_edit_profile"
-            app:destination="@id/nav_admin_edit_profile"
-            app:popUpTo="@id/nav_admin_profile" />
-    </fragment>
-    <fragment android:id="@+id/nav_admin_edit_profile"
-        android:label="Edit Profile"
-        android:name="com.example.restaurantmanagement.views.core.EditProfileView"
-        />
     <fragment
         android:id="@+id/adminOrderDetailsView"
         android:name="com.example.restaurantmanagement.views.admin.fragments.AdminOrderDetailsView"
@@ -67,7 +58,14 @@
         tools:layout="@layout/fragment_menu_details_view" >
         <action
             android:id="@+id/action_menuDetailsView_to_editMenuView"
-            app:destination="@id/editMenuView" />
+            app:destination="@id/editMenuView"
+            app:popUpTo="@id/menuDetailsView"
+            app:popUpToInclusive="false" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_admin_table"
+        android:name="com.example.restaurantmanagement.views.admin.fragments.AdminTableBookingView"
+        android:label="Booked Tables"
+        tools:layout="@layout/fragment_admin_table_booking" />
 
 </navigation>

@@ -30,6 +30,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/admin" />
-
+        app:menu="@menu/admin"/>
 </androidx.drawerlayout.widget.DrawerLayout>

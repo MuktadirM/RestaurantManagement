@@ -28,32 +28,29 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         super.onCreate(savedInstanceState);
         loginTime = Timestamp.now().toDate().toString();
 
-        //   observeUserLoginState();
+        observeUserLoginState();
 
     }
 
     public void observeUserLoginState(){
-        sessionManager.getAuthUser().observe(this, new Observer<AuthResource<Profile>>() {
-            @Override
-            public void onChanged(AuthResource<Profile> userAuthResource) {
-                if(userAuthResource !=null){
-                    switch (userAuthResource.status){
-                        case LOADING:
-                            //loading
-                            Log.d(TAG, "onChanged: Loading called");
-                            break;
-                        case AUTHENTICATED:
-                            Log.d(TAG, "onChanged: Auth Success");
-                            break;
-                        case ERROR:
-                            setMessage(userAuthResource.message);
-                            break;
-                        case NOT_AUTHENTICATED:
-                            Log.d(TAG, "onChanged: Wrong pass or user name");
-                            setMessage(userAuthResource.message);
-                            navToLogin();
-                            break;
-                    }
+        sessionManager.getAuthUser().observe(this, userAuthResource -> {
+            if(userAuthResource !=null){
+                switch (userAuthResource.status){
+                    case LOADING:
+                        //loading
+                        Log.d(TAG, "onChanged: Loading called");
+                        break;
+                    case AUTHENTICATED:
+                        Log.d(TAG, "onChanged: Auth Success");
+                        break;
+                    case ERROR:
+                        setMessage(userAuthResource.message);
+                        break;
+                    case NOT_AUTHENTICATED:
+                        Log.d(TAG, "onChanged: Wrong pass or user name");
+                        setMessage(userAuthResource.message);
+                        navToLogin();
+                        break;
                 }
             }
         });

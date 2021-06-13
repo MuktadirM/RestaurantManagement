@@ -18,6 +18,7 @@ import com.example.restaurantmanagement.domain.models.food.Food;
 import com.example.restaurantmanagement.utils.Resource;
 import com.example.restaurantmanagement.viewModels.ViewModelProviderFactory;
 import com.example.restaurantmanagement.viewModels.order.OrderViewModel;
+import com.example.restaurantmanagement.views.models.FoodModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -34,7 +35,7 @@ import static com.example.restaurantmanagement.utils.Constrains.MENU_ITEM_DETAIL
  */
 public class UserMenuItemDetailsView extends DaggerFragment {
     private FragmentUserMenuItemDetailsViewBinding binding;
-    private Food item;
+    private FoodModel item;
     private NavController navController;
 
     private OrderViewModel viewModel;
@@ -63,7 +64,6 @@ public class UserMenuItemDetailsView extends DaggerFragment {
         if (getArguments() != null) {
             item = getArguments().getParcelable(MENU_ITEM_DETAILS);
         }
-
         viewModel = new ViewModelProvider(this, providerFactory).get(OrderViewModel.class);
     }
 
@@ -74,12 +74,7 @@ public class UserMenuItemDetailsView extends DaggerFragment {
         // Inflate the layout for this fragment
         binding.setFood(item);
 
-        binding.cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.popBackStack();
-            }
-        });
+        binding.cancel.setOnClickListener(v -> navController.popBackStack());
         return binding.getRoot();
     }
 
@@ -87,26 +82,21 @@ public class UserMenuItemDetailsView extends DaggerFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        binding.addToCartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewModel.addToCart(item).observe(getViewLifecycleOwner(), new Observer<Resource<Boolean>>() {
-                    @Override
-                    public void onChanged(Resource<Boolean> booleanResource) {
-                        if(booleanResource != null){
-                            switch (booleanResource.status){
-                                case SUCCESS:
-                                    navController.popBackStack();
-                                    break;
-                                case ERROR:
-                                    break;
-                                case LOADING:
-                                    break;
-                            }
+
+        binding.addToCartBtn.setOnClickListener(v-> {
+                viewModel.addToCart(item).observe(getViewLifecycleOwner(), booleanResource -> {
+                    if(booleanResource != null){
+                        switch (booleanResource.status){
+                            case SUCCESS:
+                                if(navController.navigateUp())
+                                break;
+                            case ERROR:
+                                break;
+                            case LOADING:
+                                break;
                         }
                     }
                 });
-            }
         });
     }
 

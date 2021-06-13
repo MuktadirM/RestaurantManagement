@@ -56,11 +56,13 @@ public class Order extends DomainObject implements Parcelable {
     }
 
     public double getTotal() {
+        double price = 0;
         if(foods.size()>0){
             for (int i=0; i<foods.size(); i++){
-                total += foods.get(i).getPrice();
+                price += foods.get(i).getPrice();
             }
         }
+        total = price;
         return total;
     }
 }
