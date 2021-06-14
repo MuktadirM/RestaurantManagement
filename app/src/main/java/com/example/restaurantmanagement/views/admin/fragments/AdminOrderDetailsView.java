@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import com.example.restaurantmanagement.databinding.FragmentAdminOrderDetailsViewBinding;
 import com.example.restaurantmanagement.domain.models.food.Order;
 
+import org.jetbrains.annotations.NotNull;
+
 import dagger.android.support.DaggerFragment;
 
 /**
@@ -44,7 +46,7 @@ public class AdminOrderDetailsView extends DaggerFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAdminOrderDetailsViewBinding.inflate(inflater,container,false);
         // Inflate the layout for this fragment

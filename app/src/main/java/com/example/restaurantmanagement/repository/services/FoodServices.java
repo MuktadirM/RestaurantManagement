@@ -1,5 +1,8 @@
 package com.example.restaurantmanagement.repository.services;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -98,13 +101,38 @@ public class FoodServices implements IFoodServices {
         return "ZaUddGnXgiXkEjixahT3mO1fzMw1";
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public LiveData<Resource<Food>> updateOne(Food entity) {
-        return null;
+        CollectionReference reference = store.collection(FOOD_PATH);
+        if(liveDataFood == null){
+            liveDataFood = new MutableLiveData<>();
+        }
+        String timeStamp = Timestamp.now().toDate().toString();
+        liveDataFood.setValue(Resource.loading(null));
+        foods.removeIf(food -> food.getKey().contentEquals(entity.getKey()));
+        entity.setUpdatedAt(timeStamp);
+        foods.add(entity);
+        reference.document(entity.getKey()).set(entity).addOnSuccessListener((success)->{
+            liveDataFoods.postValue(Resource.success(foods));
+            liveDataFood.postValue(Resource.success(entity));
+        });
+        return liveDataFood;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public LiveData<Resource<Food>> deleteOne(Food entity) {
-        return null;
+        CollectionReference reference = store.collection(FOOD_PATH);
+        if(liveDataFood == null){
+            liveDataFood = new MutableLiveData<>();
+        }
+        liveDataFood.setValue(Resource.loading(null));
+        reference.document(entity.getKey()).delete().addOnSuccessListener((success)->{
+            liveDataFood.postValue(Resource.success(entity));
+            foods.removeIf(food -> food.getKey().contentEquals(entity.getKey()));
+        });
+        return liveDataFood;
     }
+
 }

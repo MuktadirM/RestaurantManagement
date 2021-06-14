@@ -25,11 +25,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{table.table}"
+                android:text="@{`Table No : ` + table.table}"
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textAlignment="center"
-                tools:text="21"
+                tools:text="Table No : 21"
                 />
 
             <TextView
@@ -40,15 +40,26 @@
                 android:textSize="20sp"
                 android:textAlignment="textStart"
                 tools:text="Name of user"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
-                android:text="@{table.time}"
+                android:text="@{`Booked At : `+table.createdAt}"
+                android:textSize="15sp"
+                android:drawablePadding="5dp"
+                tools:text="Booked At : 13 June 2021"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
+                android:text="@{`Booked for : `+ table.time}"
                 android:textSize="20sp"
                 android:drawablePadding="5dp"
-                tools:text="13 June 2021"
+                tools:text="Booked for : 13 June 2021"
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

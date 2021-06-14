@@ -1,5 +1,6 @@
 package com.example.restaurantmanagement.views.admin.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -77,7 +78,10 @@ public class MenuDetailsView extends DaggerFragment {
             bundle.putParcelable(FOOD_EDIT,food);
             navController.navigate(R.id.action_menuDetailsView_to_editMenuView,bundle);
         });
-        binding.delete.setOnClickListener(v -> navController.popBackStack());
+        binding.delete.setOnClickListener(v -> {
+            viewModel.deleteFood(food);
+            navController.popBackStack();
+        });
 
         binding.description.setMovementMethod(new ScrollingMovementMethod());
         return binding.getRoot();

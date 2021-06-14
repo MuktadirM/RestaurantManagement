@@ -52,4 +52,12 @@ public class FoodViewModel extends ViewModel {
         return foodItem;
     }
 
+    public LiveData<Resource<Food>> deleteFood(Food food){
+        return foodServices.deleteOne(food);
+    }
+
+    public LiveData<Resource<Food>> updateFood(Food food){
+        return foodServices.updateOne(food);
+    }
+
 }
