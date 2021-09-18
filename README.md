@@ -3,7 +3,7 @@
 ### Project Description
 This project is has two module one is admin another one os user it's a very simple app. But it have a high level use of OOP. It's have dependency injection , Software design pattern which you can use in our own project. Better error handling. Testable code and loosely coupled.
 
-### What I have used here ?
+### What have been used here ?
 * MVVM
 * Repository pattern
 * Firebase auth
