@@ -12,3 +12,7 @@ This project is has two module one is admin another one os user it's a very simp
 * Glide
 * Custom error handling
 * Firebase (Which is replaceable with any data soure)
+
+## App Preview
+![](Screen/Admin.gif)
+![](Screen/User.gif)
