@@ -16,6 +16,8 @@ import com.example.restaurantmanagement.views.admin.AdminHostActivity;
 import com.example.restaurantmanagement.views.user.UserHostActivity;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
@@ -81,19 +83,25 @@ public class AuthActivity extends DaggerAppCompatActivity {
                         setErrorMsgBottom("Please wait......");
                         break;
                     case AUTHENTICATED:
-                        snackbar.dismiss();
+                        if(snackbar != null){
+                            snackbar.dismiss();
+                        }
                         if (userAuthResource.data != null) {
                             loginSuccess(userAuthResource.data);
                         }
                         Log.d(TAG, "onChanged: Auth Success");
                         break;
                     case ERROR:
-                        snackbar.dismiss();
+                        if(snackbar != null){
+                            snackbar.dismiss();
+                        }
                         Log.d(TAG, "onChanged: Auth Fail");
                         setLoginMessage(userAuthResource.message);
                         break;
                     case NOT_AUTHENTICATED:
-                        snackbar.dismiss();
+                        if(snackbar != null){
+                            snackbar.dismiss();
+                        }
                         Log.d(TAG, "onChanged: "+userAuthResource.message);
                         setLoginMessage(userAuthResource.message);
                         break;
@@ -129,7 +137,7 @@ public class AuthActivity extends DaggerAppCompatActivity {
 
 
     private boolean validatedEmail(){
-        if(binding.email.getText().toString().trim().isEmpty()){
+        if(Objects.requireNonNull(binding.email.getText()).toString().trim().isEmpty()){
             binding.emailLayout.setErrorEnabled(true);
             binding.emailLayout.setError("Email can't be empty");
             return false;
@@ -138,7 +146,7 @@ public class AuthActivity extends DaggerAppCompatActivity {
         return true;
     }
     private boolean validatedPassword(){
-        if(binding.password.getText().toString().trim().isEmpty()){
+        if(Objects.requireNonNull(binding.password.getText()).toString().trim().isEmpty()){
             binding.passwordLayout.setErrorEnabled(true);
             binding.passwordLayout.setError("Password can't be empty");
             return false;

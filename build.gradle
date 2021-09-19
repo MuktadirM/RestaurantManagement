@@ -6,8 +6,8 @@ buildscript {
     }
     dependencies {
         def nav_version = "2.3.3"
-        classpath "com.android.tools.build:gradle:4.2.1"
-        classpath 'com.google.gms:google-services:4.3.8'
+        classpath "com.android.tools.build:gradle:4.2.2"
+        classpath 'com.google.gms:google-services:4.3.10'
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
@@ -25,23 +25,23 @@ ext {
     buildToolsVersion = '30.0.3'
     minSdkVersion = 22
     targetSdkVersion = 30
-    appCompatVersion='1.3.0'
-    constraintlayoutVersion ='2.0.4'
+    appCompatVersion= '1.3.1'
+    constraintlayoutVersion = '2.1.0'
     recyclerViewVersion = '1.2.1'
-    materialVersion = '1.3.0'
+    materialVersion = '1.4.0'
     cardViewVersion ='1.0.0'
     lifecycle_version='2.3.1'
     nav_version = "2.3.5"
-    daggerVersion = '2.35.1'
-    glideVersion = '4.11.0'
+    daggerVersion = '2.38.1'
+    glideVersion = '4.12.0'
     arch_version = '2.1.0'
 
-    firebase_database='20.0.0'
-    firebase_firestore='23.0.0'
+    firebase_database= '20.0.2'
+    firebase_firestore= '23.0.3'
     firebase_storage='20.0.0'
     firebase_auth='21.0.1'
-    g_services_auth='19.0.0'
-    firebase_analytics='19.0.0'
+    g_services_auth= '19.2.0'
+    firebase_analytics= '19.0.1'
 }
 
 task clean(type: Delete) {
